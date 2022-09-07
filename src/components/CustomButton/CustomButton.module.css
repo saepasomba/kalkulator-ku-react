@@ -3,6 +3,7 @@
     background-color: black;
     width: 5rem;
     height: 5rem;
+    margin: 0 auto;
     border-radius: 50%;
     cursor: pointer;
 
@@ -10,7 +11,14 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    
+
+    font-size: 2rem;
+}
+
+.buttonSpanTwo {
+    grid-column: span 2;
+    width: 100%;
+    border-radius: 25rem;
 }
 
 .btnNeutral {

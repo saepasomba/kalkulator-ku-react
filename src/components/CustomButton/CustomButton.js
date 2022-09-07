@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './CustomButton.module.css'
 
-export default function CustomButton({type, label}) {
+export default function CustomButton({type, label, span = 0}) {
     let classNameConstructor = `${styles.btn} `
     switch (type) {
         case "btn-neutral":
@@ -16,10 +16,15 @@ export default function CustomButton({type, label}) {
         default:
             break;
     }
+
+    if (span === '2') {
+        classNameConstructor += ` ${styles.buttonSpanTwo}`
+    }
+
     return (
     <>
         <div className={classNameConstructor}>
-            <h2>{label}</h2>
+            <p>{label}</p>
         </div>
     </>
     )
