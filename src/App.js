@@ -4,8 +4,57 @@ import CustomButton from './components/CustomButton/CustomButton'
 import { useState } from 'react';
 
 function App() {
-  var [currentDigit, setCurrentDigit] = useState('0')
+  let [currentDigit, setCurrentDigit] = useState('0');
+  let [firstOperand, setFirstOperand] = useState(0);
+  // let [secondOperand, setSecondOperand] = useState(0);
+  let [operator, setOperator] = useState('');
+  let [operandCleared, setOperandCleared] = useState(true);
+
+  const operate = () => {
+    let secondOperand = currentDigit;
+
+    switch (operator) {
+      case '+':
+        setCurrentDigit(Number(firstOperand) + Number(secondOperand))
+        break;
+      case '-':
+        setCurrentDigit(Number(firstOperand) - Number(secondOperand))
+        break;
+      case '*':
+        setCurrentDigit(Number(firstOperand) * Number(secondOperand))
+        break;
+      case '/':
+        setCurrentDigit(Number(firstOperand) / Number(secondOperand))
+        break;
+      default:
+        break;
+    }
+
+    // Clearing
+    setFirstOperand(0)
+    setOperator('')
+  }
+
   const handleClick = (input) => {
+    if (Number.isInteger(Number(input))) {
+      setCurrentDigit(Number(currentDigit + input))
+
+    } else if (input === 'C') {
+      setCurrentDigit('0')
+
+    } else if ('+-*/'.includes(input)) {
+      /**
+       * TODO: Fix issue kalau x + y + z = y + z (firstOperand keset y karena 2x)
+       * TODO: Fix issue kalau tanpa mencet =
+       */
+
+      setFirstOperand(currentDigit)
+      setOperator(input)
+      setCurrentDigit('0')
+
+    } else if (input === '=') {
+      operate()
+    }
   }
 
   return (
