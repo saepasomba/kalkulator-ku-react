@@ -1,0 +1,27 @@
+.btn {
+    color: white;
+    background-color: black;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.btnNeutral {
+    background-color: #505050;
+}
+
+.btnGray {
+    background-color: #d4d4d2;
+    color: black;
+}
+
+.btnOrange {
+    background-color: #ff9500;
+}
