@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# KalkulatorKu
+
+This is project is about cloning iOS calculator using react.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
