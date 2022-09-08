@@ -6,12 +6,13 @@ import { useState } from 'react';
 function App() {
   let [currentDigit, setCurrentDigit] = useState('0');
   let [firstOperand, setFirstOperand] = useState(0);
-  // let [secondOperand, setSecondOperand] = useState(0);
   let [operator, setOperator] = useState('');
+  let [isFloat, setIsFloat] = useState(false);
   let [operandCleared, setOperandCleared] = useState(true);
 
   const operate = () => {
     let secondOperand = currentDigit;
+    setIsFloat(false)
 
     switch (operator) {
       case '+':
@@ -40,6 +41,7 @@ function App() {
       setCurrentDigit(Number(currentDigit + input))
 
     } else if (input === 'C') {
+      setIsFloat(false);
       setCurrentDigit('0')
 
     } else if ('+-*/'.includes(input)) {
@@ -47,13 +49,18 @@ function App() {
        * TODO: Fix issue kalau x + y + z = y + z (firstOperand keset y karena 2x)
        * TODO: Fix issue kalau tanpa mencet =
        */
-
+      setIsFloat(false)
       setFirstOperand(currentDigit)
       setOperator(input)
       setCurrentDigit('0')
 
     } else if (input === '=') {
       operate()
+    } else if (input === ',') {
+      if (!isFloat) {
+        setCurrentDigit(currentDigit + ".")
+        setIsFloat(true);
+      }
     }
   }
 
