@@ -56,7 +56,7 @@ function App() {
 
     } else if (input === '=') {
       operate()
-    } else if (input === ',') {
+    } else if (input === '.') {
       if (!isFloat) {
         setCurrentDigit(currentDigit + ".")
         setIsFloat(true);
@@ -93,7 +93,7 @@ function App() {
         <CustomButton type='btn-orange' label='+' onClick={() => handleClick("+")} />
 
         <CustomButton type='btn-neutral' label='0' span='2' onClick={() => handleClick("0")} />
-        <CustomButton type='btn-neutral' label=',' onClick={() => handleClick(",")} />
+        <CustomButton type='btn-neutral' label='.' onClick={() => handleClick(".")} />
         <CustomButton type='btn-orange' label='=' onClick={() => handleClick("=")} />
       </div>
 
