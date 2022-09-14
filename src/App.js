@@ -8,7 +8,7 @@ function App() {
   let [firstOperand, setFirstOperand] = useState(0);
   let [operator, setOperator] = useState('');
   let [isFloat, setIsFloat] = useState(false);
-  let [operandCleared, setOperandCleared] = useState(true);
+  let [isChaining, setIsChaining] = useState(false);
 
   const operate = () => {
     let secondOperand = currentDigit;
@@ -39,30 +39,44 @@ function App() {
       result = result.toFixed(2)
     }
     setCurrentDigit(result)
-    setFirstOperand(0)
+    setFirstOperand(result)
     setOperator('')
   }
 
   const handleClick = (input) => {
     if (Number.isInteger(Number(input))) {
-      setCurrentDigit(Number(currentDigit + input))
+      if(!isChaining) {
+        setCurrentDigit(Number(currentDigit + input))
+      } else {
+        setCurrentDigit(input);
+        setIsChaining(false)
+      }
 
     } else if (input === 'C') {
       setIsFloat(false);
       setCurrentDigit('0')
+      setOperator('')
 
     } else if ('+-*/'.includes(input)) {
       /**
        * TODO: Fix issue kalau x + y + z = y + z (firstOperand keset y karena 2x)
        * TODO: Fix issue kalau tanpa mencet =
        */
-      setIsFloat(false)
-      setFirstOperand(currentDigit)
-      setOperator(input)
-      setCurrentDigit('0')
+
+      if (operator === '') {
+        setIsFloat(false)
+        setFirstOperand(currentDigit)
+        setOperator(input)
+        setCurrentDigit('0')
+      } else {
+        operate()
+        setOperator(input)
+        setIsChaining(true);
+      }
 
     } else if (input === '=') {
       operate()
+      setIsChaining(false)
     } else if (input === '.') {
       if (!isFloat) {
         setCurrentDigit(currentDigit + ".")
