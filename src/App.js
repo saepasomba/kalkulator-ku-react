@@ -14,24 +14,31 @@ function App() {
     let secondOperand = currentDigit;
     setIsFloat(false)
 
+    let result = 0;
+
     switch (operator) {
       case '+':
-        setCurrentDigit(Number(firstOperand) + Number(secondOperand))
+        result = Number(firstOperand) + Number(secondOperand)
         break;
       case '-':
-        setCurrentDigit(Number(firstOperand) - Number(secondOperand))
+        result = Number(firstOperand) - Number(secondOperand)
         break;
       case '*':
-        setCurrentDigit(Number(firstOperand) * Number(secondOperand))
+        result = Number(firstOperand) * Number(secondOperand)
         break;
       case '/':
-        setCurrentDigit(Number(firstOperand) / Number(secondOperand))
+        result = Number(firstOperand) / Number(secondOperand)
         break;
       default:
         break;
     }
 
     // Clearing
+    if (!Number.isInteger(result)) {
+      setIsFloat(true);
+      result = result.toFixed(2)
+    }
+    setCurrentDigit(result)
     setFirstOperand(0)
     setOperator('')
   }
@@ -70,7 +77,7 @@ function App() {
 
       <div className={styles.buttonGroup}>
         <div className={styles.calculatorScreen}>
-          <p className={styles.screenNumbers}>{currentDigit}</p>
+          <p className={styles.screenNumbers}>{currentDigit.toLocaleString(undefined, {maximumFractionDigits: 10})}</p>
         </div>
         <CustomButton type='btn-gray' label='C' onClick={() => handleClick("C")} />
         <CustomButton type='btn-gray' label='+/-' onClick={() => handleClick("+/-")} />

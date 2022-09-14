@@ -12,9 +12,9 @@ body {
 
 /* SCREENS */
 .calculatorScreen {
-  /* background-color: red; */
   color: white;
   grid-column: span 4;
+  overflow-x: hidden;
 
   text-align: right;
   font-size: 3rem;
